@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&;family=Raleway:wght@200;400;600&;display=swap" rel="stylesheet">
 </head>
+<header>
+ <h1>Weather and Recipes Tool</h1>  
+ <section id = "header-menu">
+    <button class ='help'>Help</button>
+    <button id ="newSearch" class='hidden'>New Search</button>
+ </section>
+</header>
 <body>
-
-    <h1>Weather and Recipes Tool</h1>
     <h2>Enter a Zip Code for Local Forecast</h2>
     <form>
         <fieldset>
@@ -20,22 +25,17 @@
     </fieldset>
     </form>
 
-    <section id ="ziptest"><h2>zip test area</h2>
-        <p id ='js-error-msg' class='hidden'></p>
-        <div id = "zip-area" class='hidden'> </div>
-    </section>
-
-    <section id ="weather-area"><h2>Weather Info</h2>
+    <section id ="weather-area">
         <p id ='js-error-msg' class='hidden'></p>
         <div id = "forecast-area" class='hidden'> </div>
     </section>
 
-    <section id ="recipe-area"><h2>What to Eat</h2>
-        <p id ='js-error-msg' class='hidden'></p>
-        <ul id = "recipe-area" class='hidden'>
-        </ul>
+    <section id ="recipe-area">
+        <p id ='js-recipe-error-msg' class='hidden'></p>
+        <div id = "recipe-area" class='hidden'>
+        </div>
     </section>
-
+    <button id ="newSearch2" class='hidden'>New Search</button>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
