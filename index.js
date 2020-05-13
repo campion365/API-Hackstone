@@ -6,29 +6,17 @@ $(".help").click(function(){
 
 
 const weatherBaseURL = 'https://api.weather.gov/points/'
-const geoBaseURL = `http://open.mapquestapi.com/geocoding/v1/address?key=MCCppEt045mG3EoM97nQbYGGPv5SbKuw&location=`
+const geoBaseURL = `https://open.mapquestapi.com/geocoding/v1/address?key=MCCppEt045mG3EoM97nQbYGGPv5SbKuw&location=`
 
 
 function getLocInfo(zipInput) {
   fetch(geoBaseURL + zipInput)
     .then(response =>
       response.json().then(data => ({
-        //data on left = object key. Data on right is the variable
+       
         data: data,
         status: response.status
 
-        //EXAMPLE WRITTEN IN THE THINKFUL FORMAT?
-        //     .then(response => {
-        //          console.log ("response sent");
-        //          return response.json();
-        //       }
-        //      
-        //     })
-
-        //       .then(responseJson => displayResults(responseJson))
-        //       .catch(err)
-        //         {(alert(err))}
-        // };
 
       })).then(function (getTemp) {
         let latLng = getTemp.data.results[0].locations[0].latLng
