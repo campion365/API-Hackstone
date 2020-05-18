@@ -129,12 +129,20 @@ $('#newSearch').click(function(){
   $(window).scrollTop(0); 
 })
 
+$('#newSearchbottom').click(function(){
+  $('#Zip-Field').val("");
+  $('#recipe-area').empty();
+  $('#forecast-area').empty();
+  $(window).scrollTop(0); 
+})
+
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     $('#recipe-area').empty()
     $('#forecast-area').empty()
     $('#newSearch').removeClass('hidden');
+    $('#newSearchbottom').removeClass('hidden');
     const zipInput = $('#Zip-Field').val();
     console.log("submit recorded");
     getLocInfo(zipInput);

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&;family=Raleway:wght@200;400;600&;display=swap" rel="stylesheet">
 </head>
+<body>
 <header>
  <h1>Weather and Recipes Tool</h1>  
  <section id = "header-menu">
@@ -14,28 +15,27 @@
     <button id ="newSearch" class='hidden'>New Search</button>
  </section>
 </header>
-<body>
     <h2>Enter a Zip Code for Local Forecast</h2>
     <form>
         <fieldset>
             <Legend>Address-Form</Legend>
-        <label for="Address-Fields">Zip Code</label><br>
+        <label for="Zip Code">Zip Code</label><br>
             <input type="text" id="Zip-Field" name="Zip-Field" required><br>
         <input type="submit" value="Show Results">
     </fieldset>
     </form>
 
-    <section id ="weather-area">
+    <section id ="weather-section">
         <p id ='js-error-msg' class='hidden'></p>
         <div id = "forecast-area" class='hidden'> </div>
     </section>
 
-    <section id ="recipe-area">
+    <section id ="recipe-section">
         <p id ='js-recipe-error-msg' class='hidden'></p>
         <div id = "recipe-area" class='hidden'>
         </div>
     </section>
-    <button id ="newSearch2" class='hidden'>New Search</button>
+    <button id ="newSearchbottom" class='hidden'>New Search</button>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
