@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Recipe API App</title>
     <link rel="stylesheet" href="main.css">
+    <script src="https://kit.fontawesome.com/7fcb00b561.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&;family=Raleway:wght@200;400;600&;display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
- <h1>Weather and Recipes Tool</h1>  
+
+<h1>Weather and Recipes Tool</h1>  
+<div class =header-icon><i id = header-weather class="fas fa-cloud-sun"></i>
+<i id = header-food class="fas fa-utensils"></i></div>
  <section id = "header-menu">
-    <button class ='help'>Help</button>
-    <button id ="newSearch" class='hidden'>New Search</button>
  </section>
 </header>
-    <h2>Enter a Zip Code for Local Forecast</h2>
+    <h2>Enter a Zip Code for Forecast & Recipes </h2>
+
     <form>
         <fieldset>
-            <Legend>Address-Form</Legend>
+          <!--  <Legend>Address-Form</Legend>-->
         <label for="Zip Code">Zip Code</label><br>
             <input type="text" id="Zip-Field" name="Zip-Field" required><br>
-        <input type="submit" value="Show Results">
+        <input type="submit" id="submit" value="Show Results">
+        <button id ="newSearch" class='hidden'>New Search</button>
     </fieldset>
     </form>
+    <button class ='help'>Help</button>
 
     <section id ="weather-section">
         <p id ='js-error-msg' class='hidden'></p>

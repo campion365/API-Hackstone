@@ -94,7 +94,9 @@ function displayWeather(weatherData) {
   console.log("showing final weather");
   $('#forecast-area').removeClass('hidden');
   $('#forecast-area').append(
-    `<h2>Weather Info</h2>
+    `<div class = "results-header">
+    <p>Weather Info</p>
+    </div>
     <h3>${weatherData.properties.periods[0].detailedForecast}</h3>`
   );
 }
@@ -104,17 +106,17 @@ function displayRecipes(recipeData) {
   console.log("showing recipes");
   $('#recipe-area').removeClass('hidden');
   $('#recipe-area').append(
-    `<h2>What to Eat</h2>
+    `<div class = "results-header">
+    <p>What to Eat</p>
+    </div>
     <div class="recipe1">
       <h3><a href="${recipeData.recipes[0].sourceUrl}" target="_blank">${recipeData.recipes[0].title}</a>
       <img src="${recipeData.recipes[0].image}" alt="${recipeData.recipes[0].title} image">
       </div><br>
-
       <div class="recipe2">
       <h3><a href="${recipeData.recipes[1].sourceUrl}" target="_blank">${recipeData.recipes[1].title}</a>
       <img src="${recipeData.recipes[1].image}" alt="${recipeData.recipes[1].title} image">
       </div><br>
-
       <div class="recipe3">
       <h3><a href="${recipeData.recipes[2].sourceUrl}" target="_blank">${recipeData.recipes[2].title}</a>
       <img src="${recipeData.recipes[2].image}" alt="${recipeData.recipes[2].title} image">
