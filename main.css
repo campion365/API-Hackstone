@@ -8,6 +8,7 @@ body{
 }
 header{
   display: inline-block;
+  width:100%;
   background-color: darkblue;
   color: white;
   font-family: 'Raleway', sans-serif;
@@ -24,17 +25,17 @@ h2{
 }
 
 .help{
-  display:flexbox;
-  margin-left: 85%;
-  
+  float: right;
+  font-size:16px;
+  margin-right: 5px;
 }
 
 form{
+  height: auto;
   text-align: center;
   font-family: 'Poppins';
   font-weight: 600;
   font-size: 20px;
-  border-style: dotted;
   border-color: #b3e6ff;
 }
 
@@ -55,7 +56,7 @@ fieldset{
 
 #Zip-Field{
   width: 50%;
-  height: 25px;
+  height: 30px;
 }
 
 #submit{
@@ -81,7 +82,8 @@ fieldset{
 }
 
 #newSearchbottom{
-  margin-left: 55%;
+ float: right;
+ margin-right: 10px;
 }
 
 .results-header{
@@ -113,4 +115,37 @@ img{
   display: none;
   }
 
-  
+
+@media only screen and (min-width: 768px) and (max-width:1199){
+img{
+  display: inline-block;
+  height:65%;
+  width:65%;
+}
+h3 {
+  display: block;
+  align-content: center;
+}
+}
+
+@media only screen and (min-width: 1200px){
+ #recipe-area{
+    display: flex;
+    }
+
+ .recipe {
+   display:flex;
+   flex-grow: 1;
+  }
+
+  img{
+    width:30%;
+  }
+  /* h3 {
+    align-content: center;
+  } */
+  #Zip-Field{
+    width: 20%;
+    height: 40px;
+  }
+  }

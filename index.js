@@ -109,15 +109,15 @@ function displayRecipes(recipeData) {
     `<div class = "results-header">
     <p>What to Eat</p>
     </div>
-    <div class="recipe1">
+    <div class="recipe">
       <h3><a href="${recipeData.recipes[0].sourceUrl}" target="_blank">${recipeData.recipes[0].title}</a>
       <img src="${recipeData.recipes[0].image}" alt="${recipeData.recipes[0].title} image">
       </div><br>
-      <div class="recipe2">
+      <div class="recipe">
       <h3><a href="${recipeData.recipes[1].sourceUrl}" target="_blank">${recipeData.recipes[1].title}</a>
       <img src="${recipeData.recipes[1].image}" alt="${recipeData.recipes[1].title} image">
       </div><br>
-      <div class="recipe3">
+      <div class="recipe">
       <h3><a href="${recipeData.recipes[2].sourceUrl}" target="_blank">${recipeData.recipes[2].title}</a>
       <img src="${recipeData.recipes[2].image}" alt="${recipeData.recipes[2].title} image">
       </div>`
