@@ -17,6 +17,10 @@ header{
   font-size: 20px;
 }
 
+#header-food, #header-weather{
+  padding-bottom: 10px;
+}
+
 h2{
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
@@ -39,6 +43,10 @@ form{
   border-color: #b3e6ff;
 }
 
+ul{
+  list-style-type: none;
+}
+
 fieldset{
   padding-top:10px;
   padding-bottom:10px;
@@ -57,6 +65,8 @@ fieldset{
 #Zip-Field{
   width: 50%;
   height: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 #submit{
@@ -116,9 +126,9 @@ img{
   }
 
 
-@media only screen and (min-width: 768px) and (max-width:1199){
+@media only screen and (min-width: 768px) and (max-width:1199px){
 img{
-  display: inline-block;
+  /* display: inline-block; */
   height:65%;
   width:65%;
 }
@@ -129,17 +139,22 @@ h3 {
 }
 
 @media only screen and (min-width: 1200px){
- #recipe-area{
+ /* .recipe-boxes {
     display: flex;
-    }
+    } */
 
- .recipe {
-   display:flex;
+.results-header{
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+ ul {
+   display: inline-flex;
    flex-grow: 1;
   }
 
   img{
-    width:30%;
+    width:80%;
   }
   /* h3 {
     align-content: center;

@@ -12,17 +12,15 @@
 <header>
 
 <h1>Weather and Recipes Tool</h1>  
-<div class =header-icon><i id = header-weather class="fas fa-cloud-sun"></i>
-<i id = header-food class="fas fa-utensils"></i></div>
+<i id = "header-weather" aria-label= "cloud icon" class="fas fa-cloud-sun"></i>
+<i id = "header-food" aria-label = "food icon" class="fas fa-utensils"></i>
  <section id = "header-menu">
  </section>
 </header>
-    <h2>Enter a Zip Code for Forecast & Recipes </h2>
-
     <form>
         <fieldset>
-          <!--  <Legend>Address-Form</Legend>-->
-        <label for="Zip Code">Zip Code</label><br>
+        <legend>Enter Zip Code for Forecast & Recipes</legend>
+        <label for="Zip-Field">Zip Code</label><br>
             <input type="text" id="Zip-Field" name="Zip-Field" required><br>
         <input type="submit" id="submit" value="Show Results">
         <button id ="newSearch" class='hidden'>New Search</button>
