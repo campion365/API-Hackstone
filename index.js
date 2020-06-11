@@ -1,6 +1,7 @@
 'use strict'
 
-$(".help").click(function(){
+//this creates/handles help alert when someone clicks help button
+$(".help").click(function () {
   alert("Input a zip code into the form below. Weather information for that zip will be displayed, as well as some recipe ideas based on the weather.");
 });
 
@@ -8,12 +9,12 @@ $(".help").click(function(){
 const weatherBaseURL = 'https://api.weather.gov/points/'
 const geoBaseURL = `https://open.mapquestapi.com/geocoding/v1/address?key=MCCppEt045mG3EoM97nQbYGGPv5SbKuw&location=`
 
-
+//initial fetch that takes zip and provides lat long used in next code blocks
 function getLocInfo(zipInput) {
   fetch(geoBaseURL + zipInput)
     .then(response =>
       response.json().then(data => ({
-       
+
         data: data,
         status: response.status
 
@@ -29,13 +30,15 @@ function getLocInfo(zipInput) {
       }));
 }
 
+//this fetch uses lat long from above to generate zip level weather
 function getWeatherFromLatLng(lat, lng) {
   let url = `https://api.weather.gov/points/${lat}%2C${lng}`
   fetch(url)
     .then(response => {
-      if (response.ok){
-        return response.json()}
-      else throw new Error ("Sorry, please try a different zip code")
+      if (response.ok) {
+        return response.json()
+      }
+      else throw new Error("Sorry, please try a different zip code")
     }).then(getTemp => {
       console.log("getWeatherFromLatLng")
       console.log(getTemp)
@@ -43,13 +46,13 @@ function getWeatherFromLatLng(lat, lng) {
         getDetailedForecast(getTemp.properties.forecast)
       }
     })
-    .catch(err=>  {  
+    .catch(err => {
       $('#js-error-msg').removeClass('hidden');
       $('#js-error-msg').append(`${err.message}`);
-      })
-    }
+    })
+}
 
-
+//takes temp info to determine recipes to show (diff recipes 4 diff temps)
 function getDetailedForecast(url) {
   fetch(url)
     .then(response => {
@@ -77,7 +80,7 @@ function getDetailedForecast(url) {
     })
 }
 
-
+//fetch for recipes api
 function getSpoon(food) {
   let url = `https://api.spoonacular.com/recipes/random?apiKey=d327b936f3224bd19f8fd19203cfbb64&number=3&tags=${food}`
   fetch(url)
@@ -89,7 +92,7 @@ function getSpoon(food) {
     })
 }
 
-//this to manage the dom showing weather and forecast
+//this to manage the dom showing weather
 function displayWeather(weatherData) {
   console.log("showing final weather");
   $('#forecast-area').removeClass('hidden');
@@ -101,7 +104,7 @@ function displayWeather(weatherData) {
   );
 }
 
-//this to manage the dom showing weather and forecast
+//this to manage the dom where it shows recipes
 function displayRecipes(recipeData) {
   console.log("showing recipes");
   $('#recipe-area').removeClass('hidden');
@@ -127,18 +130,19 @@ function displayRecipes(recipeData) {
   );
 }
 
-$('#newSearch').click(function(){
+//these two blocks code the new search buttons on top and bottom of dom
+$('#newSearch').click(function () {
   $('#Zip-Field').val("");
   $('#recipe-area').empty();
   $('#forecast-area').empty();
-  $(window).scrollTop(0); 
+  $(window).scrollTop(0);
 })
 
-$('#newSearchbottom').click(function(){
+$('#newSearchbottom').click(function () {
   $('#Zip-Field').val("");
   $('#recipe-area').empty();
   $('#forecast-area').empty();
-  $(window).scrollTop(0); 
+  $(window).scrollTop(0);
 })
 
 function watchForm() {

@@ -128,7 +128,6 @@ img{
 
 @media only screen and (min-width: 768px) and (max-width:1199px){
 img{
-  /* display: inline-block; */
   height:65%;
   width:65%;
 }
@@ -139,9 +138,6 @@ h3 {
 }
 
 @media only screen and (min-width: 1200px){
- /* .recipe-boxes {
-    display: flex;
-    } */
 
 .results-header{
   margin-left: 0%;
@@ -156,9 +152,7 @@ h3 {
   img{
     width:80%;
   }
-  /* h3 {
-    align-content: center;
-  } */
+  
   #Zip-Field{
     width: 20%;
     height: 40px;
