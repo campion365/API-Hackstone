@@ -53,7 +53,7 @@ fieldset{
 }
 
 
-#recipe-area, #weather-area{
+#restaurant-area, #weather-area{
   display: block;
   align-items: center;
   font-family: 'Poppins';

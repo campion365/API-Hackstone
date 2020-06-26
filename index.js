@@ -1,6 +1,6 @@
 'use strict'
 
-//this creates/handles help alert when someone clicks help button
+
 $(".help").click(function () {
   alert("Input a zip code into the form below. Weather information for that zip will be displayed, as well as some recipe ideas based on the weather.");
 });
@@ -9,7 +9,7 @@ $(".help").click(function () {
 const weatherBaseURL = 'https://api.weather.gov/points/'
 const geoBaseURL = `https://open.mapquestapi.com/geocoding/v1/address?key=MCCppEt045mG3EoM97nQbYGGPv5SbKuw&location=`
 
-//initial fetch that takes zip and provides lat long used in next code blocks
+
 function getLocInfo(zipInput) {
   fetch(geoBaseURL + zipInput)
     .then(response =>
@@ -23,14 +23,17 @@ function getLocInfo(zipInput) {
         let latLng = getTemp.data.results[0].locations[0].latLng
         let lat = parseFloat(latLng.lat.toFixed(4))
         let lng = parseFloat(latLng.lng.toFixed(4))
+        let latfood= latLng.lat
+        let lngfood= latLng.lng
 
-        console.log("getLocInfo")
-        console.log(getTemp.status, lat, lng)
-        getWeatherFromLatLng(lat, lng)
+        console.log("getLocInfo");
+        console.log(getTemp.status, lat, lng, latfood, lngfood);
+        getWeatherFromLatLng(lat, lng);
+        getRestaurants(latfood, lngfood);
       }));
 }
 
-//this fetch uses lat long from above to generate zip level weather
+
 function getWeatherFromLatLng(lat, lng) {
   let url = `https://api.weather.gov/points/${lat}%2C${lng}`
   fetch(url)
@@ -52,7 +55,7 @@ function getWeatherFromLatLng(lat, lng) {
     })
 }
 
-//takes temp info to determine recipes to show (diff recipes 4 diff temps)
+
 function getDetailedForecast(url) {
   fetch(url)
     .then(response => {
@@ -64,35 +67,44 @@ function getDetailedForecast(url) {
         console.log(getTemp.properties.periods[0])
         console.log(getTemp.properties.periods[0].temperature)
 
-        let temp = getTemp.properties.periods[0].temperature;
-        let food;
-        if (temp > 85) {
-          food = 'salad'
-        } else if (temp <= 84 && temp > 61) {
-          food = 'healthy+dinner'
-        } else {
-          food = 'soup'
-        }
+        // let temp = getTemp.properties.periods[0].temperature;
+        // let food;
+        // if (temp > 90) {
+        //   food = 'salad'
+        // } else if (temp <= 89 && temp > 81) {
+        //   food = 'rice+dinner'
+        // } else if (temp <=80  && temp > 75) {
+        //   food = 'roasted+chicken'       
+        // } else if (temp <= 74 && temp > 61) {
+        //   food = 'casserole'       
+        // } else {
+        //   food = 'soup'
+        // }
         displayWeather(getTemp);
 
-        getSpoon(food);
+        // getSpoon(food);
       }
     })
 }
 
-//fetch for recipes api
-function getSpoon(food) {
-  let url = `https://api.spoonacular.com/recipes/random?apiKey=d327b936f3224bd19f8fd19203cfbb64&number=3&tags=${food}`
-  fetch(url)
+
+function getRestaurants(latfood, lngfood) {
+  let Restauranturl = `https://developers.zomato.com/api/v2.1/geocode?lat=${latfood}&lon=${lngfood}`
+  const options = {
+    headers: {
+      "user-key": "97671a2f10f5fada11e3c24ffcb8f74d"
+    }
+  };
+  fetch(Restauranturl,options)
     .then(response => {
       return response.json()
     }).then(res => {
-      console.log("getSpoon" + food)
-      displayRecipes(res)
+      console.log("getRestaurant" + latfood + lngfood)
+      displayRestaurants(res)
     })
 }
 
-//this to manage the dom showing weather
+
 function displayWeather(weatherData) {
   console.log("showing final weather");
   $('#forecast-area').removeClass('hidden');
@@ -104,37 +116,32 @@ function displayWeather(weatherData) {
   );
 }
 
-//this to manage the dom where it shows recipes
-function displayRecipes(recipeData) {
-  console.log("showing recipes");
-  $('#recipe-area').removeClass('hidden');
-  $('#recipe-area').append(
+
+function displayRestaurants(res) {
+  console.log("showing restaurants");
+  $('#restaurant-area').removeClass('hidden');
+  $('#restaurant-area').append(
     `<div class = "results-header">
-    <p>What to Eat</p>
+    <p>Where to Eat</p>
     </div>
-    <section class= "recipe-boxes">
-    <ul class="recipe">
-      <li><h3><a href="${recipeData.recipes[0].sourceUrl}" target="_blank">${recipeData.recipes[0].title}</a>
-      <img src="${recipeData.recipes[0].image}" alt="${recipeData.recipes[0].title} image">
+    <section class= "restaurant-boxes">
+    <ul class="restaurants">
+      <li><h3><a href="${res.location.nearby_restaurants.restaurant[0].url}" target="_blank">${res.location.nearby_restaurants.restaurant[0].name}</a>
       </li>
       
-      <li><h3><a href="${recipeData.recipes[1].sourceUrl}" target="_blank">${recipeData.recipes[1].title}</a>
-      <img src="${recipeData.recipes[1].image}" alt="${recipeData.recipes[1].title} image">
-      </li>
-      
-      <li><h3><a href="${recipeData.recipes[2].sourceUrl}" target="_blank">${recipeData.recipes[2].title}</a>
-      <img src="${recipeData.recipes[2].image}" alt="${recipeData.recipes[2].title} image">
-      </li>
+
     </ul>
     </section>`
   );
 }
 
-//these two blocks code the new search buttons on top and bottom of dom
+
 $('#newSearch').click(function () {
   $('#Zip-Field').val("");
   $('#recipe-area').empty();
   $('#forecast-area').empty();
+  $('#newSearch').addClass('hidden');
+  $('#newSearchbottom').addClass('hidden');
   $(window).scrollTop(0);
 })
 
@@ -142,19 +149,36 @@ $('#newSearchbottom').click(function () {
   $('#Zip-Field').val("");
   $('#recipe-area').empty();
   $('#forecast-area').empty();
+  $('#newSearchbottom').addClass('hidden');
+  $('#newSearch').addClass('hidden');
   $(window).scrollTop(0);
 })
+
+function validateZip(zipInput){
+  for (var i = 0; i < zipCodeList.length; i++) {
+        if (zipCodeList[i] == zipInput) {
+          getLocInfo(zipInput);
+          $('#newSearch').removeClass('hidden');
+          $('#newSearchbottom').removeClass('hidden');
+        }
+  }
+      alert("Please enter a valid 5-digit zip code");
+     $('#Zip-Field').val("");
+     
+}
+
+
+
 
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     $('#recipe-area').empty()
     $('#forecast-area').empty()
-    $('#newSearch').removeClass('hidden');
-    $('#newSearchbottom').removeClass('hidden');
     const zipInput = $('#Zip-Field').val();
     console.log("submit recorded");
-    getLocInfo(zipInput);
+    //getLocInfo(zipInput);
+    validateZip(zipInput);
   });
 }
 
