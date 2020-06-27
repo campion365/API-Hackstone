@@ -120,25 +120,31 @@ function displayWeather(weatherData) {
 function displayRestaurants(res) {
   console.log("showing restaurants");
   $('#restaurant-area').removeClass('hidden');
-  $('#restaurant-area').append(
+    $('#restaurant-area').append(
     `<div class = "results-header">
-    <p>Where to Eat</p>
-    </div>
-    <section class= "restaurant-boxes">
-    <ul class="restaurants">
-      <li><h3><a href="${res.location.nearby_restaurants.restaurant[0].url}" target="_blank">${res.location.nearby_restaurants.restaurant[0].name}</a>
-      </li>
-      
+        <p>Where to Eat</p>
+        </div>`);
 
+  for (let i=0; i<res.nearby_restaurants.length; i++) {
+    if (i>=10) break
+
+  $('#restaurant-area').append(
+    ` <section class= "restaurant-boxes">
+    <ul class="restaurants">
+      <li><h3>${res.nearby_restaurants[i].restaurant.name}</h3>
+      <li><h2>${res.nearby_restaurants[i].restaurant.location.address}</h2>
+      <li><h2><a href="${res.nearby_restaurants[i].restaurant.url}" target="_blank">${res.nearby_restaurants[i].restaurant.name} Website</h2></a>
+      </li>
     </ul>
     </section>`
   );
+  }
 }
 
 
 $('#newSearch').click(function () {
   $('#Zip-Field').val("");
-  $('#recipe-area').empty();
+  $('#restaurant-area').empty();
   $('#forecast-area').empty();
   $('#newSearch').addClass('hidden');
   $('#newSearchbottom').addClass('hidden');
@@ -147,7 +153,7 @@ $('#newSearch').click(function () {
 
 $('#newSearchbottom').click(function () {
   $('#Zip-Field').val("");
-  $('#recipe-area').empty();
+  $('#restaurant-area').empty();
   $('#forecast-area').empty();
   $('#newSearchbottom').addClass('hidden');
   $('#newSearch').addClass('hidden');
@@ -160,6 +166,7 @@ function validateZip(zipInput){
           getLocInfo(zipInput);
           $('#newSearch').removeClass('hidden');
           $('#newSearchbottom').removeClass('hidden');
+          return
         }
   }
       alert("Please enter a valid 5-digit zip code");
@@ -173,7 +180,7 @@ function validateZip(zipInput){
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
-    $('#recipe-area').empty()
+    $('#restaurant-area').empty()
     $('#forecast-area').empty()
     const zipInput = $('#Zip-Field').val();
     console.log("submit recorded");

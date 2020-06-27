@@ -25,7 +25,7 @@ h2{
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   text-align: center;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .help{
@@ -37,7 +37,6 @@ h2{
 form{
   height: auto;
   text-align: center;
-  font-family: 'Poppins';
   font-weight: 600;
   font-size: 20px;
   border-color: #b3e6ff;
@@ -67,6 +66,7 @@ fieldset{
   height: 30px;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-family: 'Poppins';
 }
 
 #submit{
@@ -126,7 +126,7 @@ img{
   }
 
 
-@media only screen and (min-width: 768px) and (max-width:1199px){
+@media only screen and (min-width: 768px){
 img{
   height:65%;
   width:65%;
@@ -144,10 +144,10 @@ h3 {
   margin-right: 0%;
 }
 
- ul {
+ /* ul {
    display: inline-flex;
    flex-grow: 1;
-  }
+  } */
 
   img{
     width:80%;
